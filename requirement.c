@@ -11,7 +11,7 @@ int my_factrec_synthesis(int nb)
         return 1;
     if (nb < 0 || nb > 12)
         return 0;
-    return my_factorial_synthesis(nb - 1) * nb;
+    return my_factrec_synthesis(nb - 1) * nb;
 }
 
 int my_squareroot_synthesis(int nb)
