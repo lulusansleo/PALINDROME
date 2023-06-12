@@ -31,6 +31,10 @@ static int error_handling(int ac, char **av)
         print_usage(2);
         return 1;
     }
+    if (ac > 3)
+        if (((strcmp(av[1], "-n") == 0 && strcmp(av[3], "-p") == 0)) ||
+        ((strcmp(av[1], "-p") == 0 && strcmp(av[3], "-n") == 0)))
+            return 1;
     if (number_error(av[2]))
         return 1;
     return 0;
