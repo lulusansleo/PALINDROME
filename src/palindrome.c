@@ -7,10 +7,10 @@
 
 #include "palindrome.h"
 
-int reverse_number(int nb, int base)
+long int reverse_number(long int nb, long int base)
 {
-    int digit = 0;
-    int reverse = 0;
+    long int digit = 0;
+    long int reverse = 0;
 
     while (nb > 0) {
         digit = nb % base;
@@ -20,34 +20,34 @@ int reverse_number(int nb, int base)
     return reverse;
 }
 
-int base_addition(int nb, int add, int base)
+long int base_addition(long int nb, long int add, long int base)
 {
-    int res = 0;
-    int digit = 0;
-    int power = 1;
+    long int res = 0;
+    long int power = 1;
+    long int digit = 0;
+    long int rest = 0;
 
-    while (nb > 0 || add > 0) {
-        digit = (nb % base) + (add % base);
-        if (digit >= base) {
-            res += ((digit - base) * power) * 10;
-            digit -= base;
-        }
+    while (nb > 0 || add > 0 || rest > 0) {
+        digit = (nb % 10) + (add % 10) + rest;
+        rest = digit / base;
+        digit %= base;
         res += digit * power;
-        nb = nb / 10;
-        add = add / 10;
+        nb /= 10;
+        add /= 10;
         power *= 10;
     }
+
     return res;
 }
 
-int change_from_base(int nb, int base)
+long int change_from_base(long int nb, long int base)
 {
-    int result = 0;
-    int power = 1;
-    int digit = 0;
+    long int result = 0;
+    long int power = 1;
+    long int digit = 0;
 
     if (base == 10)
-        return 10;
+        return nb;
     while (nb > 0) {
         digit = nb % base;
         result += digit * power;
@@ -57,10 +57,10 @@ int change_from_base(int nb, int base)
     return result;
 }
 
-int change_to_base(int nb, int base)
+long int change_to_base(long int nb, long int base)
 {
-    int result = 0;
-    int power = 1;
+    long int result = 0;
+    long int power = 1;
 
     if (base == 10)
         return nb;
@@ -72,25 +72,26 @@ int change_to_base(int nb, int base)
     return result;
 }
 
-int palindrome(int nb, int base, it_info_t *info)
+long int palindrome(long int nb, long int base, it_info_t *info)
 {
-    int i = 0;
-    int reverse = 0;
-    int copy = nb;
+    long int i = 0;
+    long int reverse = 0;
+    long int copy = nb;
     nb = change_to_base(nb, base);
-    for (i = 0; (reverse = reverse_number(nb, base)) != nb; i++) {
-        if (base < 10)
-            nb = base_addition(nb, reverse, base);
-        else
-            nb = nb + reverse;
-        if (nb > __INT_MAX__ || nb < 0 || i >= info->i_max)
+    for (i = 1; i < info->i_min; i++) {
+        reverse = reverse_number(nb, base);
+        nb = (base < 10) ? base_addition(nb, reverse, base) : nb + reverse;
+    }
+    for (i = i; (reverse = reverse_number(nb, base)) != nb; i++) {
+        nb = (base < 10) ? base_addition(nb, reverse, base) : nb + reverse;
+        if (nb > __LONG_MAX__ || nb < 0 || i >= info->i_max
+        || reverse < 0) {
+            printf("error on %ld or %ld\n", nb, reverse);
             return 1;
+        }
     }
     nb = change_from_base(nb, base);
-    if (i >= info->i_min)
-        printf("%d leads to %d in %d iterations in base %d\n",
-        copy, nb, i, base);
-    else
-        return 1;
+    printf("%ld leads to %ld in %ld iterations in base %ld\n",
+    copy, nb, i, base);
     return 0;
 }

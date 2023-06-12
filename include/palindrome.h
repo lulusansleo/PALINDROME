@@ -14,18 +14,18 @@
     #include <stdlib.h>
 
     typedef struct it_info {
-        int i_min;
-        int i_max;
+        long int i_min;
+        long int i_max;
     } it_info_t;
 
-    int is_str_digit(char *str);
+    long int is_str_digit(char *str);
 
-    int number_error(char *str);
+    long int number_error(char *str);
 
-    int change_to_base(int nb, int base);
+    long int change_to_base(long int nb, long int base);
 
-    int palindrome(int nb, int base, it_info_t *info);
+    long int palindrome(long int nb, long int base, it_info_t *info);
 
-    void palindrome_wrapper(int ac, char **av);
+    void palindrome_wrapper(long int ac, char **av);
 
 #endif /* !PALINDROME_H */
