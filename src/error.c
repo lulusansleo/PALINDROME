@@ -24,3 +24,17 @@ int number_error(char *str)
     }
     return 0;
 }
+
+int check_arg(int ac, char **av)
+{
+    for (int i = 3; av[i]; i++) {
+        if ((strcmp(av[i], "-imin") == 0 || strcmp(av[i], "-imax") == 0 ||
+        strcmp(av[i], "-b") == 0) && is_str_digit(av[i + 1]))
+            i++;
+        else {
+            dprintf(2, "invalid argument\n");
+            return 1;
+        }
+    }
+    return 0;
+}

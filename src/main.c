@@ -37,6 +37,8 @@ static int error_handling(int ac, char **av)
             return 1;
     if (number_error(av[2]))
         return 1;
+    if (check_arg(ac, av))
+        return 1;
     return 0;
 }
 
