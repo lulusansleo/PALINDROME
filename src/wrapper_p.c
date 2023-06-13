@@ -7,9 +7,9 @@
 
 #include "palindrome.h"
 
-static int check_palindrome(int nb, int base)
+static int check_palindrome(long int nb, long int base)
 {
-    int rev = 0;
+    long int rev = 0;
 
     nb = change_to_base(nb, base);
     rev = reverse_number(nb, base);
