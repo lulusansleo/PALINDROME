@@ -38,4 +38,10 @@
 
     int check_values(long int base, it_info_t *info);
 
+    long int palindrome_p(long int nb, long int base, it_info_t *info);
+
+    long int base_addition(long int nb, long int add, long int base);
+
+    long int get_params(it_info_t *info, char **av);
+
 #endif /* !PALINDROME_H */
