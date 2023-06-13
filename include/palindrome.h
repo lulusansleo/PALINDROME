@@ -18,14 +18,16 @@
         long int i_max;
     } it_info_t;
 
-    long int is_str_digit(char *str);
+    int is_str_digit(char *str);
 
-    long int number_error(char *str);
+    int number_error(char *str);
 
     long int change_to_base(long int nb, long int base);
 
     long int palindrome(long int nb, long int base, it_info_t *info);
 
-    void palindrome_wrapper(long int ac, char **av);
+    int palindrome_wrapper(long int ac, char **av);
+
+    long int check_arg(int ac, char **av);
 
 #endif /* !PALINDROME_H */

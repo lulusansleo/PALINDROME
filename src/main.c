@@ -50,6 +50,7 @@ int main(int ac, char **av)
     }
     if (error_handling(ac, av))
         return 84;
-    palindrome_wrapper(ac, av);
+    if (palindrome_wrapper(ac, av))
+        return 84;
     return 0;
 }
