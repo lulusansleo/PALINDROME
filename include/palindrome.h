@@ -24,10 +24,18 @@
 
     long int change_to_base(long int nb, long int base);
 
+    long int change_from_base(long int nb, long int base);
+
+    long int reverse_number(long int nb, long int base);
+
     long int palindrome(long int nb, long int base, it_info_t *info);
 
-    int palindrome_wrapper(long int ac, char **av);
+    int palindrome_wrapper(int ac, char **av);
 
-    long int check_arg(int ac, char **av);
+    int palindrome_p_wrapper(int ac, char **av);
+
+    int check_arg(char **av);
+
+    int check_values(long int base, it_info_t *info);
 
 #endif /* !PALINDROME_H */

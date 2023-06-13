@@ -25,7 +25,7 @@ int number_error(char *str)
     return 0;
 }
 
-long int check_arg(int ac, char **av)
+int check_arg(char **av)
 {
     for (long int i = 3; av[i]; i++) {
         if ((strcmp(av[i], "-imin") == 0 || strcmp(av[i], "-imax") == 0 ||

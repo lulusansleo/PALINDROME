@@ -24,15 +24,15 @@ long int get_params(it_info_t *info, char **av)
     return base;
 }
 
-static int check_values(long int base, it_info_t *info)
+int check_values(long int base, it_info_t *info)
 {
-    if (info->i_min > info->i_max || base > 9 || base < 1) {
+    if (info->i_min > info->i_max || base > 10 || base < 1) {
         return 1;
     }
     return 0;
 }
 
-int palindrome_wrapper(long int ac, char **av)
+int palindrome_wrapper(int ac, char **av)
 {
     it_info_t *info = malloc(sizeof (it_info_t));
     long int base = 10;
@@ -46,10 +46,8 @@ int palindrome_wrapper(long int ac, char **av)
         free(info);
         return 1;
     };
-    if (strcmp("-n", av[1]) == 0)
-        if (palindrome(atoi(av[2]), base, info))
-            printf("no solution\n");
-
+    if (palindrome(atoi(av[2]), base, info))
+        printf("no solution\n");
     free(info);
     return 0;
 }

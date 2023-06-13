@@ -27,7 +27,7 @@ static int error_handling(int ac, char **av)
         print_usage(2);
         return 1;
     }
-    if (strcmp(av[1], "-n") != 0 && strcmp(av[1], "-n") != 0) {
+    if (strcmp(av[1], "-n") != 0 && strcmp(av[1], "-p") != 0) {
         print_usage(2);
         return 1;
     }
@@ -37,7 +37,7 @@ static int error_handling(int ac, char **av)
             return 1;
     if (number_error(av[2]))
         return 1;
-    if (check_arg(ac, av))
+    if (check_arg(av))
         return 1;
     return 0;
 }
@@ -50,7 +50,11 @@ int main(int ac, char **av)
     }
     if (error_handling(ac, av))
         return 84;
-    if (palindrome_wrapper(ac, av))
-        return 84;
+    if (strcmp(av[1], "-n") == 0)
+        if (palindrome_wrapper(ac, av))
+            return 84;
+    if (strcmp(av[1], "-p") == 0)
+        if (palindrome_p_wrapper(ac, av))
+            return 84;
     return 0;
 }

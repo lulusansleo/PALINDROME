@@ -9,7 +9,9 @@ CC ?=	gcc
 
 SRC = 	src/error.c \
 		src/palindrome.c \
-		src/wraper.c
+		src/wraper.c \
+		src/wrapper_p.c \
+		src/palindrome_p.c
 
 OBJ =	$(SRC:.c=.o)
 
