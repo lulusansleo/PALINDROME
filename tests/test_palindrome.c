@@ -107,6 +107,30 @@ Test(palindrome_tests, palindrome_allll, .init=redirect_out)
     free(for_test);
 }
 
+Test(palindrome_tests, palindrome_alllll, .init=redirect_out)
+{
+    it_info_t *for_test = malloc(sizeof (it_info_t *));
+    long nb = 345645678;
+    long base = 2;
+    for_test->i_max = 100;
+    for_test->i_min = 2;
+
+    cr_assert_eq(palindrome(nb, base, for_test), 1);
+    free(for_test);
+}
+
+Test(palindrome_tests, palindrome_p_alllll, .init=redirect_out)
+{
+    it_info_t *for_test = malloc(sizeof (it_info_t *));
+    long nb = 65789;
+    long base = 2;
+    for_test->i_max = 100;
+    for_test->i_min = 2;
+
+    cr_assert_eq(palindrome_p(nb, base, for_test), 0);
+    free(for_test);
+}
+
 Test(palindrome_tests, palindrome_p_all_base_two, .init=redirect_out)
 {
     it_info_t *for_test = malloc(sizeof (it_info_t *));
@@ -275,7 +299,13 @@ Test(unit_testss, check_args_correct, .init=redirect_out)
     cr_assert_eq(error_handling(ac, arr), 0);
 }
 
-Test(unit_testss, check_args_correctsasda, .init=redirect_out)
+Test(unit_testss, check_args_cor, .init=redirect_out)
+{
+    char *arr[11] = {"./palindrome", "-n", "12", "-b", "9", "-imin", "0", "-imax"};
+    cr_assert_eq(check_arg(arr), 1);
+}
+
+Test(unit_testss, check_args_correctsasda, .init=redirect_err)
 {
     char *arr[11] = {"./palindrome", "-n", "12", "-b", "-imin", "0", "-imax", "10"};
     int ac = 10;

@@ -20,8 +20,7 @@ int find_palindrome(long int pal, long int nb, long int base, it_info_t *info)
     }
     for (; (reverse = reverse_number(nb, base)) != nb || nb != pal; i++) {
         nb = (base < 10) ? base_addition(nb, reverse, base) : nb + reverse;
-        if (nb > __LONG_MAX__ || nb < 0 || i >= info->i_max
-        || reverse < 0 || nb > pal) {
+        if (i >= info->i_max || nb > pal) {
             return 0;
         }
     }

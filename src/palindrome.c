@@ -85,8 +85,7 @@ long int palindrome(long int nb, long int base, it_info_t *info)
     }
     for (; (reverse = reverse_number(nb, base)) != nb; i++) {
         nb = (base < 10) ? base_addition(nb, reverse, base) : nb + reverse;
-        if (nb > __LONG_MAX__ || nb < 0 || i >= info->i_max
-        || reverse < 0) {
+        if (nb > __LONG_MAX__ || nb < 0 || i >= info->i_max) {
             return 1;
         }
     }
