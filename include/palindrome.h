@@ -44,4 +44,8 @@
 
     long int get_params(it_info_t *info, char **av);
 
+    int error_handling(int ac, char **av);
+
+    void print_usage(int output);
+
 #endif /* !PALINDROME_H */

@@ -34,8 +34,7 @@ int palindrome_p_wrapper(int ac, char **av)
         free(info);
         return 1;
     };
-    if (palindrome_p(atoi(av[2]), base, info))
-        return 1;
+    palindrome_p(atoi(av[2]), base, info);
     free(info);
     return 0;
 }
