@@ -26,7 +26,7 @@ long int get_params(it_info_t *info, char **av)
 
 int check_values(long int base, it_info_t *info)
 {
-    if (info->i_min > info->i_max || base > 10 || base < 1) {
+    if (info->i_min > info->i_max || base > 10 || base <= 1) {
         return 1;
     }
     return 0;
